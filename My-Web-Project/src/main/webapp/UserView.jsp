@@ -20,7 +20,7 @@
 		<h2 style="color: green"><%=succ != null ? succ : ""%></h2>
 		<h2 style="color: red"><%=err != null ? err : ""%></h2>
 
-		<form action="UserCtl" method="post">
+		<form action="UserCtl.do" method="post">
 
 			<table>
 
