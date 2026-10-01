@@ -1,3 +1,4 @@
+<%@page import="com.util.ServletUtility"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,17 +10,25 @@
 <body>
 	<%@ include file="Header.jsp"%>
 
-	<%
+	<%-- <%
 	String succ = (String) request.getAttribute("succMsg");
 	String err = (String) request.getAttribute("errorMsg");
+	%> --%>
+
+	<%
+	String succ = ServletUtility.getSuccesMessage(request);
+	String err = ServletUtility.getErrorMessage(request);
 	%>
+
 
 	<div align="center">
 		<h1>User Registration</h1>
 
-		<h2 style="color: green"><%=succ != null ? succ : ""%></h2> // ternary operator used
-		<h2 style="color: red"> <%=err != null ? err : "" %></h2>
+		<%-- 	<h2 style="color: green"><%=succ != null ? succ : ""%></h2>   <!-- ternary operator used -->
+		<h2 style="color: red"> <%=err != null ? err : "" %></h2> --%>
 
+		<h2 style="color: green"><%=succ%></h2>
+		<h2 style="color: red"><%=err%></h2>
 
 		<form action="UserRegistrationCtl" method="post">
 

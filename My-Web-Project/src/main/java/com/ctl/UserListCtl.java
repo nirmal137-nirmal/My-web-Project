@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.bean.UserBean;
 import com.model.UserModel;
+import com.util.ServletUtility;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -34,8 +35,11 @@ public class UserListCtl extends HttpServlet {
 		request.setAttribute("pageNo", pageNo);
 		request.setAttribute("pageSize", pageSize);
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
-		rd.forward(request, response);
+		/*
+		 * RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
+		 * rd.forward(request, response);
+		 */
+		ServletUtility.forward("UserListView.jsp", request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -86,8 +90,12 @@ public class UserListCtl extends HttpServlet {
 		request.setAttribute("pageNo", pageNo);
 		request.setAttribute("pageSize", pageSize);
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
-		rd.forward(request, response);
+		/*
+		 * RequestDispatcher rd = request.getRequestDispatcher("UserListView.jsp");
+		 * rd.forward(request, response);
+		 */
+		
+		ServletUtility.forward("UserListView.jsp", request, response);
 
 	}
 

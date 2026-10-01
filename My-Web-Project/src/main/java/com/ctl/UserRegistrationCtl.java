@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 
 import com.bean.UserBean;
 import com.model.UserModel;
+import com.util.ServletUtility;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,8 +23,12 @@ public class UserRegistrationCtl extends HttpServlet {
 
 		System.out.println("In do get Method");
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
-		rd.forward(request, response);
+		/*
+		 * RequestDispatcher rd =
+		 * request.getRequestDispatcher("UserRegistrationView.jsp"); rd.forward(request,
+		 * response);
+		 */
+		ServletUtility.forward("UserRegistrationView.jsp", request, response);
 	}
 
 	@Override
@@ -54,16 +59,22 @@ public class UserRegistrationCtl extends HttpServlet {
 			bean.setDob(sdf.parse(dob));
 			
 			model.add(bean);
-			request.setAttribute("succMsg", "User Register Successfully");
-			
+			//request.setAttribute("succMsg", "User Register Successfully");
+			ServletUtility.setSuccMessage("user register successfully", request);
 			
 		} catch (Exception e) {
-			request.setAttribute("errorMsg", e.getMessage());
+			//request.setAttribute("errorMsg", e.getMessage());
+			ServletUtility.setErrorMessage(e.getMessage(), request);
 			e.printStackTrace();
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("UserRegistrationView.jsp");
-		rd.forward(request, response);
+		/*
+		 * RequestDispatcher rd =
+		 * request.getRequestDispatcher("UserRegistrationView.jsp"); rd.forward(request,
+		 * response);
+		 */
+		
+		ServletUtility.forward("UserRegistrationView.jsp", request, response);
 	}
 
 }

@@ -1,3 +1,4 @@
+<%@page import="com.util.ServletUtility"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,14 +21,23 @@
 
 	int index = (pageNo - 1) * pageSize + 1;
 
-	String errorMsg = (String) request.getAttribute("errorMsg");
-	String succMsg = (String) request.getAttribute("succMsg");
+	/* String errorMsg = (String) request.getAttribute("errorMsg");
+	String succMsg = (String) request.getAttribute("succMsg"); */
+	
+	
+	String succ = ServletUtility.getSuccesMessage(request);
+	String err = ServletUtility.getErrorMessage(request);
+	
+
 	%>
 	<div align="center">
 		<h1>User List</h1>
 
-		<h2 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h2>
-		<h2 style="color: green"><%=succMsg != null ? succMsg : ""%></h2>
+		<%-- <h2 style="color: red"><%=errorMsg != null ? errorMsg : ""%></h2>
+		<h2 style="color: green"><%=succMsg != null ? succMsg : ""%></h2> --%>
+		
+		<h2 style="color: green"><%=succ%></h2>
+		<h2 style="color: red"><%=err%></h2>
 
 		<form action="UserListCtl.do" method="post">
 

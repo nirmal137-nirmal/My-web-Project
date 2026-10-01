@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="com.util.ServletUtility"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +8,30 @@
 <body>
 
 	<%@ include file="Header.jsp"%>
+
+	<%-- <%
+	String succ = (String) request.getAttribute("succMsg"); // type cast kra hai
+	String err = (String) request.getAttribute("errorMsg");
+	%> --%>
 	
-	<% String succ = (String) request.getAttribute("succMsg"); // type cast kra hai
-	   String err = (String) request.getAttribute("errorMsg");
- 	%>
+	<%
+	String succ = ServletUtility.getSuccesMessage(request);
+	String err = ServletUtility.getErrorMessage(request);
+	%>
+
+
 
 	<div align="center">
 		<h1>Login</h1>
-		
-		<h2 style="color: green"><%= succ != null ? succ : ""  %></h2>
-		<h2 style="color: red"> <%= err != null ? err : "" %></h2>
 
-		<form action="LoginCtl" method="post">  <!-- request body me sara form ka data hide hoke jayega --> 
+		<%-- <h2 style="color: green"><%=succ != null ? succ : ""%></h2>
+		<h2 style="color: red"><%=err != null ? err : ""%></h2> --%>
+
+		<h2 style="color: green"><%=succ%></h2>
+		<h2 style="color: red"><%=err%></h2>
+
+		<form action="LoginCtl" method="post">
+			<!-- request body me sara form ka data hide hoke jayega -->
 			<table>
 				<tr>
 					<th align="left">Login</th>
@@ -37,8 +48,8 @@
 				<tr>
 					<th></th>
 					<td><input type="submit" name="operation" value="SignIn"></td>
-					
-							<!-- request jayegi submit Pe click Karenge to --> 
+
+					<!-- request jayegi submit Pe click Karenge to -->
 				</tr>
 
 			</table>

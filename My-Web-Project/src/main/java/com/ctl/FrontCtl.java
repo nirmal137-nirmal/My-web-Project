@@ -2,17 +2,18 @@ package com.ctl;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import com.util.ServletUtility;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebFilter("*.do")
 public class FrontCtl implements Filter {
@@ -33,10 +34,14 @@ public class FrontCtl implements Filter {
 
 		if (session.getAttribute("user") == null) {
 			request.setAttribute("errorMsg", "you session has been expired please re-login :(");
-			RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
-			rd.forward(request, response);
+			/*
+			 * RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+			 * rd.forward(request, response);
+			 */
+			ServletUtility.forward("LoginView.jsp", request, response);
+
 		} else {
-			chain.doFilter(request, response);    // call next filter or controller in the chain if session.user exist.
+			chain.doFilter(request, response); // call next filter or controller in the chain if session.user exist.
 		}
 
 	}

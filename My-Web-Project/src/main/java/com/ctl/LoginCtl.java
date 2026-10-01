@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.bean.UserBean;
 import com.model.UserModel;
+import com.util.ServletUtility;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -26,8 +27,11 @@ public class LoginCtl extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
-		rd.forward(request, response);
+		/*
+		 * RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		 * rd.forward(request, response);
+		 */
+		ServletUtility.forward("LoginView.jsp", request, response);
 	}
 
 	@Override
@@ -37,7 +41,7 @@ public class LoginCtl extends HttpServlet {
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
 
-		String loginid = request.getParameter("login"); // get kiya parameter ko 
+		String loginid = request.getParameter("login"); // get kiya parameter ko
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
 
@@ -47,8 +51,8 @@ public class LoginCtl extends HttpServlet {
 
 			if (bean != null) {
 				session.setAttribute("user", bean); // user yaha key hai or bean yaha value hai
-				response.sendRedirect("WelcomeCtl"); // sendRedirect method is used to generate to new request. 
-				return; 							// or by default do get method run hoti hai to 
+				response.sendRedirect("WelcomeCtl"); // sendRedirect method is used to generate to new request.
+				return; // or by default do get method run hoti hai to
 				// request.setAttribute("succMsg", "Login Successfull");
 
 			} else {
@@ -60,8 +64,12 @@ public class LoginCtl extends HttpServlet {
 			// request.setAttribute("err", e.getMessage());
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
-		rd.forward(request, response);
+		/*
+		 * RequestDispatcher rd = request.getRequestDispatcher("LoginView.jsp");
+		 * rd.forward(request, response);
+		 */
+		ServletUtility.forward("LoginView.jsp", request, response);
+
 	}
 
 }
